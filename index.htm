@@ -69,6 +69,7 @@
       gap:16px;
       align-items:flex-start;
       flex-wrap:wrap;
+      margin-top:8px;
     }
     .secB-left{
       flex:1 1 320px;
@@ -146,7 +147,7 @@
       <h2>② 10進 ⇒ 16進（各桁を選択）</h2>
 
       <div class="secB-main">
-        <!-- 左側：これまでの②のUI -->
+        <!-- 左側：②のUI -->
         <div class="secB-left">
           <div class="row">
             <div class="binary-display" id="binaryDisplay">現在の2進：---- ----</div>
@@ -160,8 +161,6 @@
           <div class="row" style="margin-top:12px;">
             <div id="hexSelects" aria-label="16進数の各桁"></div>
           </div>
-
-          <div class="feedback" id="fbB"></div>
         </div>
 
         <!-- 右側：自由メモ欄 -->
@@ -170,6 +169,9 @@
           <textarea id="memoArea" placeholder="計算途中のメモを書いてください"></textarea>
         </aside>
       </div>
+
+      <!-- ②の採点結果はメモより下に表示 -->
+      <div class="feedback" id="fbB"></div>
     </section>
 
     <div class="summary" id="summary"></div>
