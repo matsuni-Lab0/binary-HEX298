@@ -62,6 +62,54 @@
     .ok{ color:var(--ok); }
     .ng{ color:var(--ng); }
     .summary{ margin-top:14px; padding:10px; border-radius:10px; background:#f5f5ff; border:1px solid #e0e7ff; }
+
+    /* ②枠：左に問題UI、右にメモ欄 */
+    .secB-main{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .secB-left{
+      flex:1 1 320px;
+      min-width:0;
+    }
+    .memo-box{
+      flex:0 0 220px;
+      max-width:260px;
+      background:#f9fafb;
+      border:1px dashed #cbd5e1;
+      border-radius:10px;
+      padding:8px 10px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .memo-title{
+      font-size:13px;
+      font-weight:700;
+      color:#475569;
+    }
+    .memo-box textarea{
+      width:100%;
+      min-height:140px;
+      resize:vertical;
+      padding:6px 8px;
+      border-radius:8px;
+      border:1px solid #cbd5e1;
+      font-size:13px;
+      font-family:inherit;
+    }
+
+    @media (max-width:640px){
+      .secB-main{
+        flex-direction:column;
+      }
+      .memo-box{
+        width:100%;
+        max-width:none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -93,20 +141,35 @@
       <div class="feedback" id="fbA"></div>
     </section>
 
-    <!-- ② 10進 ⇒ 16進（HEX選択） -->
+    <!-- ② 10進 ⇒ 16進（HEX選択）＋右側メモ欄 -->
     <section class="panel" id="secB">
       <h2>② 10進 ⇒ 16進（各桁を選択）</h2>
-      <div class="row"><div class="binary-display" id="binaryDisplay">現在の2進：---- ----</div></div>
-      <div class="w-wrap" id="hintWeights">
-        <div class="nibbles" id="nibbles"></div>
-        <div class="w-note">ヒント：4桁ごとに枠で区切り、各ビットの重み（8,4,2,1）を書いて確認しましょう。</div>
-      </div>
 
-      <div class="row" style="margin-top:12px;">
-        <div id="hexSelects" aria-label="16進数の各桁"></div>
-      </div>
+      <div class="secB-main">
+        <!-- 左側：これまでの②のUI -->
+        <div class="secB-left">
+          <div class="row">
+            <div class="binary-display" id="binaryDisplay">現在の2進：---- ----</div>
+          </div>
 
-      <div class="feedback" id="fbB"></div>
+          <div class="w-wrap" id="hintWeights">
+            <div class="nibbles" id="nibbles"></div>
+            <div class="w-note">ヒント：4桁ごとに枠で区切り、各ビットの重み（8,4,2,1）を書いて確認しましょう。</div>
+          </div>
+
+          <div class="row" style="margin-top:12px;">
+            <div id="hexSelects" aria-label="16進数の各桁"></div>
+          </div>
+
+          <div class="feedback" id="fbB"></div>
+        </div>
+
+        <!-- 右側：自由メモ欄 -->
+        <aside class="memo-box" aria-label="計算メモ欄">
+          <div class="memo-title">メモ</div>
+          <textarea id="memoArea" placeholder="計算途中のメモを書いてください"></textarea>
+        </aside>
+      </div>
     </section>
 
     <div class="summary" id="summary"></div>
